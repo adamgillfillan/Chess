@@ -6,12 +6,12 @@ class TestPiece:
     """Test Pawn values"""
 
     def pytest_funcarg__valid_piece(self):
-        return {'Pawn': Pawn(Position('A', '2'), 'white'),
+        return {'Pawn':   Pawn(Position('A', '2'), 'white'),
                 'Knight': Knight(Position('A', '2'), 'white'),
-                'Rook': Rook(Position('A', '2'), 'white'),
+                'Rook':   Rook(Position('A', '2'), 'white'),
                 'Bishop': Bishop(Position('A', '2'), 'white'),
-                'Queen': Queen(Position('A', '2'), 'white'),
-                'King': King(Position('A', '2'), 'white')}
+                'Queen':  Queen(Position('A', '2'), 'white'),
+                'King':   King(Position('A', '2'), 'white')}
 
     def assert_attributes(self, piece, shape, value, type):
         assert piece.shape == shape
