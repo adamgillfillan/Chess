@@ -71,7 +71,7 @@ class Rook(Piece):
 class Bishop(Piece):
     shape = "B"
     type = "Bishop"
-    value = "100"
+    value = "7"
 
     def move(self, posn_2):
         """Move bishop * spaces on diagonal path"""
@@ -81,7 +81,7 @@ class Bishop(Piece):
 class Queen(Piece):
     shape = "Q"
     type = "Queen"
-    value = "100"
+    value = "7"
 
     def move(self, posn_2):
         """Move Queen * spaces in any direction"""
