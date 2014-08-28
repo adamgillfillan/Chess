@@ -3,7 +3,7 @@ from pieces import *
 
 
 class TestPiece:
-    """Test Pawn values"""
+    """Test Piece values"""
 
     def pytest_funcarg__valid_piece(self):
         return {'Pawn':   Pawn(Position('A', '2'), 'white'),
