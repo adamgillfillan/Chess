@@ -11,7 +11,7 @@ class Game:
         self.player_1 = Player("white")
         self.player_2 = Bot3435("black")
         self.choices = {
-            "1": self.show_game_board,
+            "1": self.print_game_board,
             "2": self.round,
             "3": self.quit
         }
@@ -38,7 +38,7 @@ class Game:
             else:
                 print("{0} is not a valid choice".format(choice))
 
-    def show_game_board(self):
+    def print_game_board(self):
         """Print the game board to terminal"""
         print("Showing game board")
 

@@ -1,7 +1,7 @@
 __author__ = 'Adam'
 
 
-class Position():
+class Position:
     """
     Position class used to represent the physical location of a piece.
     Location is based on the x, y position.
@@ -12,7 +12,7 @@ class Position():
         self.y = y
 
 
-class Piece():
+class Piece:
     """Piece Superclass. All piece objects inherit the Piece class"""
 
     def __init__(self, position, color):
