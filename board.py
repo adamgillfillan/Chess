@@ -5,7 +5,7 @@ import time
 from pieces import Position
 from player import Player
 from bot3435 import Bot3435
-
+from termcolor import colored
 
 class Board:
     def __init__(self):
@@ -39,9 +39,9 @@ class Board:
     @staticmethod
     def error_message(error):
         if error == 1:
-            print("Invalid move. Please try again.")
+            print(colored("Invalid move. Please try again.", "red"))
         if error == 2:
-            print("You have no piece at this location.")
+            print(colored("You have no piece at this location.", "red"))
 
     @staticmethod
     def successful_move_message(old_posn, piece):
@@ -50,8 +50,8 @@ class Board:
             sys.stdout.flush()
             time.sleep(0.3)
 
-        print("\n\nYou successfully moved your {0} from {1}{2} to {3}{4}!".format(
-            piece.type, old_posn.x, old_posn.y, piece.posn.x, piece.posn.y))
+        print(colored("\n\nYou successfully moved your {0} from {1}{2} to {3}{4}!".format(
+            piece.type, old_posn.x, old_posn.y, piece.posn.x, piece.posn.y), "green"))
 
     def move_piece_from(self):
         print("move piece")
