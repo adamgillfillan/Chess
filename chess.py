@@ -1,12 +1,6 @@
 __author__ = 'Adam'
 import sys
-import time
-from pieces import Position
 from board import Board
-
-# TO DO:
-# Add board class as a component to game
-# Then, each player moves on the board
 
 
 class Game:
@@ -15,7 +9,7 @@ class Game:
         # self.player_2 = Bot3435("black")
         self.board = Board()
         self.choices = {
-            "1": self.print_game_board,
+            "1": self.board.print_board,
             "2": self.round,
             "3": self.quit
         }
