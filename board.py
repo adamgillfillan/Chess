@@ -1,40 +1,58 @@
 __author__ = 'Adam'
 
-import sys
-import time
-from pieces import Position
-from player import Player
-from bot3435 import Bot3435
-from termcolor import colored
+from pieces import *
 
 
 class Board:
     def __init__(self):
         self.board = self.initialize()
-        self.player_1 = Player("white")
-        self.player_2 = Bot3435("black")
 
     def initialize(self):
         """Initialize the game board"""
+        board = [["X" for i in range(8)] for j in range(8)]
 
-        board = []
-        for i in range(64):
-            board.append("X")
+        for i in range(8):
+            board[1][i] = "P"
+            board[6][i] = "P"
+
+        for i in range(0, 8, 7):
+            board[i][0] = "R"
+            board[i][1] = "G"
+            board[i][2] = "B"
+            board[i][3] = "Q"
+            board[i][4] = "K"
+            board[i][5] = "B"
+            board[i][6] = "G"
+            board[i][7] = "R"
         return board
 
     def print_board(self):
         k = 1
         numbers = '87654321'
-        print("\n")
+        print()
         for i in range(8):
-            print("{0}  {1} {2} {3} {4} {5} {6} {7} {8}".format(numbers[i],
-                                                                self.board[i+0 + k],
-                                                                self.board[i+1 + k],
-                                                                self.board[i+2 + k],
-                                                                self.board[i+3 + k],
-                                                                self.board[i+4 + k],
-                                                                self.board[i+5 + k],
-                                                                self.board[i+6 + k],
-                                                                self.board[i+7 + k],))
-            k += 1
+            print(numbers[i], end="  ")
+            for k in range(8):
+                print(self.board[i][k], end=" ")
+            print()
         print("   A B C D E F G H")
+
+    # def update_board(self, list_of_pieces_1, list_of_pieces_2):
+    #     for pieces in list_of_pieces_1:
+    #         for piece in pieces:
+    #             if piece.posn.x
+
+    def convert_letter_to_num(self, posn):
+        letters = 'ABCDEFGH'
+        i = 0
+        for letter in letters:
+            if posn.x == letter:
+                return i
+            i += 1
+
+    def update_board(self, from_posn, to_posn):
+        x_value = self.convert_letter_to_num(from_posn)
+        for i in range(8):
+            for k in range(8):
+                if self.board[i][k] == from_posn.x:
+                    pass

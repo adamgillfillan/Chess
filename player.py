@@ -1,9 +1,9 @@
 __author__ = 'Adam'
 from pieces import *
-from chess import Game
+from board import Board
 
 
-class Player():
+class Player:
 
     def __init__(self, color):
         self.color = color
@@ -64,7 +64,6 @@ class Player():
         if piece_valid:
             return my_piece
         else:
-            Game.error_message(2)
             return "False"
 
     def move(self):
@@ -75,8 +74,6 @@ class Player():
             position_2 = Position(move_2[0], move_2[1])
             is_success = piece.move(position_2)
             if is_success:
-                Game.successful_move_message(old_posn, piece)
-                return True
+                return True, old_posn, piece
             else:
-                Game.error_message(1)
                 return False

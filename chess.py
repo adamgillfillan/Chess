@@ -1,13 +1,16 @@
 __author__ = 'Adam'
-import sys, time
+import sys
+import time
 from board import Board
 from termcolor import colored
+from player import Player
+from bot3435 import Bot3435
 
 
 class Game:
     def __init__(self):
-        # self.player_1 = Player("white")
-        # self.player_2 = Bot3435("black")
+        self.player_1 = Player("white")
+        self.player_2 = Bot3435("black")
         self.board = Board()
         self.choices = {
             "1": self.board.print_board,
@@ -39,10 +42,13 @@ class Game:
 
     # Option 2
     def round(self):
-        is_success = self.board.move()
+        is_success, old_posn, piece = self.player_1.move()
         if is_success:
-            self.board.player_2.move()
+            self.successful_move_message(old_posn, piece)
+            self.board.update_board(old_posn, piece.posn)
+            self.player_2.move()
         else:
+            self.error_message(1)
             self.round()
 
     # Option 3
@@ -67,6 +73,9 @@ class Game:
 
         print(colored("\n\nYou successfully moved your {0} from {1}{2} to {3}{4}!".format(
             piece.type, old_posn.x, old_posn.y, piece.posn.x, piece.posn.y), "green"))
+
+    def update_board(self):
+        pass
 
 if __name__ == "__main__":
     game = Game()
