@@ -1,6 +1,7 @@
 __author__ = 'Adam'
-import sys
+import sys, time
 from board import Board
+from termcolor import colored
 
 
 class Game:
@@ -36,11 +37,6 @@ class Game:
             else:
                 print("{0} is not a valid choice".format(choice))
 
-    # Option 1
-    def print_game_board(self):
-        """Print the game board to terminal"""
-        print("Showing game board")
-
     # Option 2
     def round(self):
         is_success = self.board.move()
@@ -54,6 +50,23 @@ class Game:
     def quit():
         print("Thank you for playing Chess!")
         sys.exit(0)
+
+    @staticmethod
+    def error_message(error):
+        if error == 1:
+            print(colored("Invalid move. Please try again.", "red"))
+        if error == 2:
+            print(colored("You have no piece at this location.", "red"))
+
+    @staticmethod
+    def successful_move_message(old_posn, piece):
+        for letter in "Moving piece ...":
+            sys.stdout.write(letter)
+            sys.stdout.flush()
+            time.sleep(0.3)
+
+        print(colored("\n\nYou successfully moved your {0} from {1}{2} to {3}{4}!".format(
+            piece.type, old_posn.x, old_posn.y, piece.posn.x, piece.posn.y), "green"))
 
 if __name__ == "__main__":
     game = Game()

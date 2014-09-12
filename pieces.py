@@ -34,7 +34,6 @@ class Pawn(Piece):
 
     def move(self, posn_2):
         """Move pawn 1 space forward, unless on the first move of *this* pawn, then 2 spaces is allowed"""
-        # super().move(posn_2)
         if abs(int(posn_2.y) - int(self.posn.y)) <= int(self.value) and posn_2.x == self.posn.x:
             self.posn = posn_2
             return True

@@ -1,5 +1,6 @@
 __author__ = 'Adam'
 from pieces import *
+from chess import Game
 
 
 class Player():
@@ -47,3 +48,35 @@ class Player():
         self.pieces.append(self.rooks)
         self.pieces.append(self.queen)
         self.pieces.append(self.king)
+
+    def move_piece_from(self):
+        print("move piece")
+        move = input("Enter the location of the piece you want to move (ex: A2):  ")
+        position = Position(move[0], move[1])
+        piece_valid = False
+        my_piece = ""
+        for pieces in self.pieces:
+            for piece in pieces:
+                if piece.posn.x == position.x and piece.posn.y == position.y:  # Does a valid piece exist here?
+                    piece_valid = True
+                    my_piece = piece
+                    break
+        if piece_valid:
+            return my_piece
+        else:
+            Game.error_message(2)
+            return "False"
+
+    def move(self):
+        piece = self.move_piece_from()
+        if piece != "False":
+            old_posn = piece.posn
+            move_2 = input("Enter the location you would like to move your {0}:  ".format(piece.type))
+            position_2 = Position(move_2[0], move_2[1])
+            is_success = piece.move(position_2)
+            if is_success:
+                Game.successful_move_message(old_posn, piece)
+                return True
+            else:
+                Game.error_message(1)
+                return False
