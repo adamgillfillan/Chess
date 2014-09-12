@@ -45,10 +45,10 @@ class Game:
         is_success, old_posn, piece = self.player_1.move()
         if is_success:
             self.successful_move_message(old_posn, piece)
-            self.board.update_board(old_posn, piece.posn)
+            self.board.update_board(old_posn, piece)
             self.player_2.move()
         else:
-            self.error_message(1)
+            self.error_message(2)
             self.round()
 
     # Option 3
@@ -69,7 +69,7 @@ class Game:
         for letter in "Moving piece ...":
             sys.stdout.write(letter)
             sys.stdout.flush()
-            time.sleep(0.3)
+            time.sleep(0.1)
 
         print(colored("\n\nYou successfully moved your {0} from {1}{2} to {3}{4}!".format(
             piece.type, old_posn.x, old_posn.y, piece.posn.x, piece.posn.y), "green"))

@@ -1,7 +1,5 @@
 __author__ = 'Adam'
 
-from pieces import *
-
 
 class Board:
     def __init__(self):
@@ -37,22 +35,22 @@ class Board:
             print()
         print("   A B C D E F G H")
 
-    # def update_board(self, list_of_pieces_1, list_of_pieces_2):
-    #     for pieces in list_of_pieces_1:
-    #         for piece in pieces:
-    #             if piece.posn.x
-
-    def convert_letter_to_num(self, posn):
+    @staticmethod
+    def convert_letter_to_num(posn):
+        """Convert a posn.x value from letter to number for indexing in the board array"""
         letters = 'ABCDEFGH'
         i = 0
         for letter in letters:
             if posn.x == letter:
+                print(posn.x, letter, i)
                 return i
             i += 1
 
-    def update_board(self, from_posn, to_posn):
-        x_value = self.convert_letter_to_num(from_posn)
-        for i in range(8):
-            for k in range(8):
-                if self.board[i][k] == from_posn.x:
-                    pass
+    def update_board(self, from_posn, piece):
+        old_x_value = self.convert_letter_to_num(from_posn)
+        new_x_value = self.convert_letter_to_num(piece.posn)
+
+        # Must take 8 less the old y value
+        # Note: the board's x, y values are switched compared to Piece x, y values >.<
+        self.board[8 - int(from_posn.y)][old_x_value] = "X"
+        self.board[8 - int(piece.posn.y)][new_x_value] = piece.shape

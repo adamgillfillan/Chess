@@ -13,7 +13,7 @@ class Bot3435(Player):
         for letter in "Bot is calculating his move ...":
             sys.stdout.write(letter)
             sys.stdout.flush()
-            time.sleep(0.3)
+            time.sleep(0.1)
         print(colored("\n\nBot has moved. Your turn!", "blue"))
 
         # print("\n\nYou successfully moved your {0} from {1}{2} to {3}{4}!".format(
