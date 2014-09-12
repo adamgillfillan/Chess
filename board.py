@@ -1,4 +1,5 @@
 __author__ = 'Adam'
+from termcolor import colored
 
 
 class Board:
@@ -25,7 +26,6 @@ class Board:
         return board
 
     def print_board(self):
-        k = 1
         numbers = '87654321'
         print()
         for i in range(8):
@@ -42,7 +42,6 @@ class Board:
         i = 0
         for letter in letters:
             if posn.x == letter:
-                print(posn.x, letter, i)
                 return i
             i += 1
 
@@ -52,5 +51,29 @@ class Board:
 
         # Must take 8 less the old y value
         # Note: the board's x, y values are switched compared to Piece x, y values >.<
+        is_capture, value = self.capture_piece(piece, new_x_value)
+        if is_capture:
+            print(colored("Your {0} captured the Bot's {1}!", "green").format(piece.type, self.convert_value_to_type(value)))
         self.board[8 - int(from_posn.y)][old_x_value] = "X"
         self.board[8 - int(piece.posn.y)][new_x_value] = piece.shape
+
+    def capture_piece(self, piece, x_posn):
+        value = self.board[8 - int(piece.posn.y)][x_posn]
+        if value != "X":
+            return True, value
+        return False, value
+
+    @staticmethod
+    def convert_value_to_type(value):
+        if value == "P":
+            return "Pawn"
+        if value == "R":
+            return "Rook"
+        if value == "G":
+            return "Knight"
+        if value == "B":
+            return "Bishop"
+        if value == "Q":
+            return "Queen"
+        if value == "K":
+            return "King"
